@@ -45,27 +45,29 @@
         const mapContainer = document.getElementById("map-container");
 
         // Add clickable areas
-        hotspots.forEach((spot) => {
-            const clickArea = document.createElement("div");
-            clickArea.style.position = "absolute";
-            clickArea.style.top = spot.y;
-            clickArea.style.left = spot.x;
-            clickArea.style.width = "30px";
-            clickArea.style.height = "30px";
-            clickArea.style.cursor = "pointer";
-            clickArea.style.zIndex = 10;
-            clickArea.setAttribute("data-id", spot.id);
-            mapContainer.appendChild(clickArea);
+hotspots.forEach((spot) => {
+    const clickArea = document.createElement("div");
+    clickArea.style.position = "absolute";
+    clickArea.style.top = spot.y;
+    clickArea.style.left = spot.x;
+    clickArea.style.width = "30px";
+    clickArea.style.height = "30px";
+    clickArea.style.border = "2px solid red"; // Debug: Show hotspot boundaries
+    clickArea.style.cursor = "pointer";
+    clickArea.style.zIndex = 10;
+    clickArea.setAttribute("data-id", spot.id);
+    mapContainer.appendChild(clickArea);
 
-            clickArea.addEventListener("click", () => {
-                const userAnswer = prompt("Enter the correct label:");
-                if (userAnswer === spot.correctAnswer) {
-                    alert("Correct!");
-                } else {
-                    alert("Incorrect, try again.");
-                }
-            });
-        });
+    clickArea.addEventListener("click", () => {
+        console.log("Hotspot clicked:", spot.id); // Debug: Log click events
+        const userAnswer = prompt("Enter the correct label:");
+        if (userAnswer === spot.correctAnswer) {
+            alert("Correct!");
+        } else {
+            alert("Incorrect, try again.");
+        }
+    });
+});
     </script>
 </body>
 </html>
