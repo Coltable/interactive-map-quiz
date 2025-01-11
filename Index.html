@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Map Quiz (Mobile Friendly)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        #map-container {
+            position: relative;
+            margin: 20px auto;
+            width: 80%;
+            max-width: 800px;
+        }
+        #map {
+            width: 100%;
+        }
+        .label {
+            position: absolute;
+            font-size: 14px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 2px 4px;
+            border-radius: 4px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Interactive Map Quiz (Mobile Friendly)</h1>
+    <p>Click or tap on the blank areas and type in the correct labels!</p>
+    <div id="map-container">
+        <img id="map" src="blind_map.jpg" alt="Blind Map">
+    </div>
+
+    <script>
+        // Hotspot definitions
+        const hotspots = [
+            { id: "spot1", correctAnswer: "FL245 FL95", x: "10%", y: "20%" },
+            { id: "spot2", correctAnswer: "FL285 FL95", x: "80%", y: "10%" },
+            { id: "spot3", correctAnswer: "RONNEBY TMA", x: "50%", y: "90%" },
+        ];
+
+        const mapContainer = document.getElementById("map-container");
+
+        // Add clickable/touchable areas
+        hotspots.forEach((spot) => {
+            const clickArea = document.createElement("div");
+            clickArea.style.position = "absolute";
+            clickArea.style.top = spot.y;
+            clickArea.style.left = spot.x;
+            clickArea.style.width = "30px";
+            clickArea.style.height = "30px";
+            clickArea.style.border = "2px solid red"; // Debug: Show hotspot boundaries
+            clickArea.style.backgroundColor = "rgba(255, 0, 0, 0.3)"; // Debug: Highlight area
+            clickArea.style.cursor = "pointer";
+            clickArea.style.zIndex = 10;
+            clickArea.setAttribute("data-id", spot.id);
+            mapContainer.appendChild(clickArea);
+
+            // Handle both click and touch events
+            const handleInteraction = () => {
+                console.log("Hotspot touched/clicked:", spot.id); // Debug: Log interaction
+                const userAnswer = prompt("Enter the correct label:");
+                if (userAnswer === spot.correctAnswer) {
+                    alert("Correct!");
+                } else {
+                    alert("Incorrect, try again.");
+                }
+            };
+
+            clickArea.addEventListener("click", handleInteraction);
+            clickArea.addEventListener("touchstart", handleInteraction);
+        });
+    </script>
+</body>
+</html>
