@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Map Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        #map-container {
+            position: relative;
+            margin: 20px auto;
+            width: 80%;
+            max-width: 800px;
+        }
+        #map {
+            width: 100%;
+        }
+        .label {
+            position: absolute;
+            font-size: 14px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 2px 4px;
+            border-radius: 4px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Interactive Map Quiz</h1>
+    <p>Click on the blank areas and type in the correct labels!</p>
+    <div id="map-container">
+        <img id="map" src="blind_map.jpg" alt="Blind Map">
+        <!-- Example of a hotspot -->
+        <div class="label" id="label1" style="top: 30%; left: 50%;">FL245</div>
+    </div>
+
+    <script>
+        // Hotspot definitions with correct answers
+        const hotspots = [
+            { id: "label1", correctAnswer: "FL245", x: "30%", y: "50%" },
+            // Add more hotspots as needed
+        ];
+
+        const mapContainer = document.getElementById("map-container");
+
+        // Add clickable areas
+        hotspots.forEach((spot, index) => {
+            const clickArea = document.createElement("div");
+            clickArea.style.position = "absolute";
+            clickArea.style.top = spot.y;
+            clickArea.style.left = spot.x;
+            clickArea.style.width = "30px";
+            clickArea.style.height = "30px";
+            clickArea.style.cursor = "pointer";
+            clickArea.style.zIndex = 10;
+            clickArea.setAttribute("data-id", spot.id);
+            mapContainer.appendChild(clickArea);
+
+            clickArea.addEventListener("click", () => {
+                const userAnswer = prompt("Enter the correct label:");
+                if (userAnswer === spot.correctAnswer) {
+                    document.getElementById(spot.id).style.display = "block";
+                    alert("Correct!");
+                } else {
+                    alert("Incorrect, try again.");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
