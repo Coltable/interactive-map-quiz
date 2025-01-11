@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Map Quiz (Mobile Friendly)</title>
+    <title>Interactive Map Quiz (Corrected)</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -32,19 +32,15 @@
     </style>
 </head>
 <body>
-    <h1>Interactive Map Quiz (Mobile Friendly)</h1>
+    <h1>Interactive Map Quiz (Corrected)</h1>
     <p>Click or tap on the blank areas and type in the correct labels!</p>
     <div id="map-container">
         <img id="map" src="blind_map.jpg" alt="Blind Map">
     </div>
 
     <script>
-        // Hotspot definitions
-        const hotspots = [
-            { id: "spot1", correctAnswer: "FL245 FL95", x: "10%", y: "20%" },
-            { id: "spot2", correctAnswer: "FL285 FL95", x: "80%", y: "10%" },
-            { id: "spot3", correctAnswer: "RONNEBY TMA", x: "50%", y: "90%" },
-        ];
+        // Corrected hotspot definitions
+        const hotspots = [{'id': 'spot1', 'correctAnswer': 'FL245 FL95', 'x': '15%', 'y': '25%'}, {'id': 'spot2', 'correctAnswer': 'FL285 FL95', 'x': '85%', 'y': '15%'}, {'id': 'spot3', 'correctAnswer': 'FL205 1500ft', 'x': '45%', 'y': '55%'}, {'id': 'spot4', 'correctAnswer': 'RONNEBY TMA', 'x': '50%', 'y': '90%'}, {'id': 'spot5', 'correctAnswer': 'FL205 4500ft', 'x': '10%', 'y': '40%'}, {'id': 'spot6', 'correctAnswer': 'FL205 2000ft', 'x': '60%', 'y': '45%'}, {'id': 'spot7', 'correctAnswer': 'KNIVSHULT A', 'x': '35%', 'y': '75%'}, {'id': 'spot8', 'correctAnswer': 'KNIVSHULT B', 'x': '40%', 'y': '80%'}];
 
         const mapContainer = document.getElementById("map-container");
 
